@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tạ Minh Trí - DevSecOps & SRE Expert</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      /* Animated gradient background */
+      .gradient-bg {
+        background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #475569);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Glowing effect */
+      .glow {
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+      }
+
+      .skill-tag {
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-tag::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(99, 102, 241, 0.4),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .skill-tag:hover::before {
+        left: 100%;
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+      }
+
+      /* Timeline animation */
+      .timeline-item {
+        opacity: 0;
+        transform: translateX(-50px);
+        animation: slideIn 0.6s ease forwards;
+      }
+
+      .timeline-item:nth-child(even) {
+        transform: translateX(50px);
+      }
+
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Floating animation */
+      .float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      /* Typing animation */
+      .typing {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 3px solid #6366f1;
+        animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: #6366f1;
+        }
+      }
+
+      /* Project card hover effect */
+      .project-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        bottom: -50%;
+        left: -50%;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(99, 102, 241, 0.1) 50%,
+          transparent 70%
+        );
+        transform: rotate(45deg) translate(-100%, -100%);
+        transition: transform 0.6s;
+      }
+
+      .project-card:hover::after {
+        transform: rotate(45deg) translate(100%, 100%);
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px) rotateX(5deg);
+        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #1a202c;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #8b5cf6 0%, #6366f1 100%);
+      }
+
+      /* Particle effect */
+      .particle {
+        position: fixed;
+        pointer-events: none;
+        opacity: 0.5;
+        animation: particleAnimation 20s linear infinite;
+      }
+
+      @keyframes particleAnimation {
+        0% {
+          transform: translateY(100vh) translateX(0);
+        }
+        100% {
+          transform: translateY(-10vh) translateX(100px);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-300 gradient-bg">
+    <!-- Particles Background -->
+    <div id="particles"></div>
+
+    <!-- Header -->
+    <header
+      class="bg-gray-900/90 backdrop-blur-md fixed w-full top-0 z-50 border-b border-gray-800/50"
+    >
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a
+            href="#"
+            class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400"
+          >
+            Tạ Minh Trí
+          </a>
+          <div class="hidden md:flex items-center space-x-6">
+            <a
+              href="#about"
+              class="text-gray-300 hover:text-indigo-400 transition-colors duration-300"
+              >About</a
+            >
+            <a
+              href="#experience"
+              class="text-gray-300 hover:text-indigo-400 transition-colors duration-300"
+              >Experience</a
+            >
+            <a
+              href="#skills"
+              class="text-gray-300 hover:text-indigo-400 transition-colors duration-300"
+              >Skills</a
+            >
+            <a
+              href="#projects"
+              class="text-gray-300 hover:text-indigo-400 transition-colors duration-300"
+              >Projects</a
+            >
+            <a
+              href="#certifications"
+              class="text-gray-300 hover:text-indigo-400 transition-colors duration-300"
+              >Certifications</a
+            >
+            <a
+              href="#contact"
+              class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 glow"
+            >
+              Contact Me
+            </a>
+          </div>
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              class="text-white focus:outline-none"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-gray-800/95 backdrop-blur-md"
+      >
+        <a
+          href="#about"
+          class="block py-3 px-6 text-sm hover:bg-gray-700/50 hover:text-indigo-400 transition"
+          >About</a
+        >
+        <a
+          href="#experience"
+          class="block py-3 px-6 text-sm hover:bg-gray-700/50 hover:text-indigo-400 transition"
+          >Experience</a
+        >
+        <a
+          href="#skills"
+          class="block py-3 px-6 text-sm hover:bg-gray-700/50 hover:text-indigo-400 transition"
+          >Skills</a
+        >
+        <a
+          href="#projects"
+          class="block py-3 px-6 text-sm hover:bg-gray-700/50 hover:text-indigo-400 transition"
+          >Projects</a
+        >
+        <a
+          href="#certifications"
+          class="block py-3 px-6 text-sm hover:bg-gray-700/50 hover:text-indigo-400 transition"
+          >Certifications</a
+        >
+        <a
+          href="#contact"
+          class="block py-3 px-6 text-sm hover:bg-gray-700/50 hover:text-indigo-400 transition"
+          >Contact</a
+        >
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-24">
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="min-h-screen flex items-center justify-center py-20"
+      >
+        <div class="max-w-5xl mx-auto text-center">
+          <div class="mb-8 float">
+            <div
+              class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 p-1"
+            >
+              <img
+                src="https://placehold.co/128x128/1a202c/ffffff?text=TMT"
+                alt="Tạ Minh Trí"
+                class="w-full h-full rounded-full object-cover"
+              />
+            </div>
+          </div>
+          <h1
+            class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 mb-4"
+          >
+            Tạ Minh Trí
+          </h1>
+          <h2
+            class="text-2xl md:text-3xl text-indigo-400 font-semibold mb-6 typing"
+          >
+            DevSecOps & Site Reliability Engineer
+          </h2>
+          <p
+            class="text-lg text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed"
+          >
+            <span class="text-indigo-300">10+ years</span> of expertise in
+            engineering product development, specializing in
+            <span class="text-purple-300">high-availability systems</span>,
+            <span class="text-pink-300">cloud infrastructure</span>, and
+            <span class="text-indigo-300">DevSecOps practices</span>. Passionate
+            about building resilient, secure, and scalable solutions.
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center">
+            <a
+              href="#contact"
+              class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 glow"
+            >
+              Get In Touch
+            </a>
+            <a
+              href="#projects"
+              class="border-2 border-indigo-500 text-indigo-400 hover:bg-indigo-500 hover:text-white font-bold py-3 px-8 rounded-full text-lg transition-all duration-300"
+            >
+              View Projects
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-20 border-t border-gray-800/50">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2
+              class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-6"
+            >
+              About Me
+            </h2>
+            <div class="space-y-4 text-gray-400">
+              <p class="leading-relaxed">
+                I am a seasoned
+                <span class="text-indigo-300 font-semibold"
+                  >DevSecOps and Site Reliability Engineer</span
+                >
+                with over a decade of experience in engineering product
+                development. In my most recent role as
+                <span class="text-purple-300 font-semibold"
+                  >DevSecOps Team Lead at SHS</span
+                >, where I've successfully re-architected product development
+                processes and implemented cutting-edge cloud-native solutions.
+              </p>
+              <p class="leading-relaxed">
+                My expertise spans across
+                <span class="text-pink-300">Cloud computing</span>,
+                <span class="text-indigo-300">Kubernetes orchestration</span>,
+                <span class="text-purple-300">Service mesh architectures</span>,
+                and <span class="text-green-300">DevSecOps practices</span>. I
+                specialize in designing and deploying robust, scalable, and
+                secure infrastructure for mission-critical applications.
+              </p>
+              <p class="leading-relaxed">
+                With strong skills in
+                <span class="text-yellow-300">Golang</span>,
+                <span class="text-blue-300">Automation</span>, and
+                <span class="text-red-300">System architecture</span>, I focus
+                on building solutions that not only meet current needs but are
+                also prepared for future scale and complexity.
+              </p>
+            </div>
+            <div class="mt-6 flex flex-wrap gap-4">
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-indigo-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                  />
+                  <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
+                </svg>
+                <span class="text-gray-300">0932420089</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-purple-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                  />
+                  <path
+                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                  />
+                </svg>
+                <span class="text-gray-300">minhted@gmail.com</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-pink-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="text-gray-300">Hanoi, Vietnam</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="relative inline-block">
+              <div
+                class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full blur-xl opacity-70"
+              ></div>
+              <img
+                src="https://d1nprcww96gwhv.cloudfront.net/default/914321000.png"
+                alt="Tạ Minh Trí"
+                class="relative rounded-full mx-auto shadow-2xl w-80 h-80 object-cover border-4 border-gray-800"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="py-20 border-t border-gray-800/50">
+        <h2
+          class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-12"
+        >
+          Professional Journey
+        </h2>
+        <div class="max-w-5xl mx-auto">
+          <div class="relative">
+            <!-- Vertical line -->
+            <div
+              class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-indigo-500 to-purple-600"
+            ></div>
+
+            <!-- SHS -->
+            <div class="mb-16 flex items-center w-full timeline-item">
+              <div class="w-1/2 pr-8 text-right">
+                <div
+                  class="p-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-xl border border-gray-700/50 hover:border-indigo-500/50 transition-all duration-300"
+                >
+                  <p class="text-indigo-400 font-semibold">
+                    Feb 2024 - May 2025
+                  </p>
+                  <h3 class="text-2xl font-bold text-white mt-2">
+                    DevSecOps Team Lead
+                  </h3>
+                  <p class="text-gray-400 mb-2">
+                    Saigon - Hanoi Securities (SHS)
+                  </p>
+                  <div class="flex justify-end gap-2 mt-3">
+                    <span
+                      class="text-xs px-2 py-1 bg-indigo-900/50 text-indigo-300 rounded-full"
+                      >Leadership</span
+                    >
+                    <span
+                      class="text-xs px-2 py-1 bg-purple-900/50 text-purple-300 rounded-full"
+                      >Architecture</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="w-1/2 pl-8">
+                <ul class="space-y-2 text-gray-400">
+                  <li class="flex items-start">
+                    <span class="text-indigo-400 mr-2">▶</span>
+                    Led complete re-architecture of product development process
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-indigo-400 mr-2">▶</span>
+                    Implemented centralized configuration management with
+                    HashiCorp Vault
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-indigo-400 mr-2">▶</span>
+                    Deployed on-premise, high-availability Kubernetes clusters
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-indigo-400 mr-2">▶</span>
+                    Automated secure CI/CD pipelines with DevSecOps practices
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-indigo-400 mr-2">▶</span>
+                    Built enterprise-grade Kafka messaging system with mTLS
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- TPBank -->
+            <div
+              class="mb-16 flex flex-row-reverse items-center w-full timeline-item"
+            >
+              <div class="w-1/2 pl-8 text-left">
+                <div
+                  class="p-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300"
+                >
+                  <p class="text-purple-400 font-semibold">
+                    Jan 2022 - Feb 2024
+                  </p>
+                  <h3 class="text-2xl font-bold text-white mt-2">
+                    Site Reliability Engineer
+                  </h3>
+                  <p class="text-gray-400 mb-2">TPBank</p>
+                  <div class="flex gap-2 mt-3">
+                    <span
+                      class="text-xs px-2 py-1 bg-purple-900/50 text-purple-300 rounded-full"
+                      >SRE</span
+                    >
+                    <span
+                      class="text-xs px-2 py-1 bg-pink-900/50 text-pink-300 rounded-full"
+                      >Banking</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="w-1/2 pr-8 text-right">
+                <ul class="space-y-2 text-gray-400">
+                  <li class="flex items-start justify-end text-right">
+                    <span class="text-purple-400 ml-2 order-2">◀</span>
+                    <span class="order-1"
+                      >Operated ~100 microservices for Digital Banking</span
+                    >
+                  </li>
+                  <li class="flex items-start justify-end text-right">
+                    <span class="text-purple-400 ml-2 order-2">◀</span>
+                    <span class="order-1"
+                      >Built and managed API Gateway infrastructure</span
+                    >
+                  </li>
+                  <li class="flex items-start justify-end text-right">
+                    <span class="text-purple-400 ml-2 order-2">◀</span>
+                    <span class="order-1"
+                      >Optimized Oracle database performance</span
+                    >
+                  </li>
+                  <li class="flex items-start justify-end text-right">
+                    <span class="text-purple-400 ml-2 order-2">◀</span>
+                    <span class="order-1"
+                      >Managed OKD and OCP OpenShift environments</span
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- HUST -->
+            <div class="mb-8 flex items-center w-full timeline-item">
+              <div class="w-1/2 pr-8 text-right">
+                <div
+                  class="p-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg shadow-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300"
+                >
+                  <p class="text-pink-400 font-semibold">Jan 2016 - Dec 2021</p>
+                  <h3 class="text-2xl font-bold text-white mt-2">
+                    Infrastructure Engineer
+                  </h3>
+                  <p class="text-gray-400 mb-2">
+                    Hanoi University of Science & Technology
+                  </p>
+                  <div class="flex justify-end gap-2 mt-3">
+                    <span
+                      class="text-xs px-2 py-1 bg-pink-900/50 text-pink-300 rounded-full"
+                      >VMware</span
+                    >
+                    <span
+                      class="text-xs px-2 py-1 bg-indigo-900/50 text-indigo-300 rounded-full"
+                      >Networking</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="w-1/2 pl-8">
+                <ul class="space-y-2 text-gray-400">
+                  <li class="flex items-start">
+                    <span class="text-pink-400 mr-2">▶</span>
+                    Designed enterprise virtualization infrastructure
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-pink-400 mr-2">▶</span>
+                    Implemented secure DMZ network architecture
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-pink-400 mr-2">▶</span>
+                    Configured advanced networking with VLANs
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="py-20 border-t border-gray-800/50">
+        <h2
+          class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-12"
+        >
+          Technical Arsenal
+        </h2>
+        <div class="max-w-6xl mx-auto">
+          <!-- Skill Categories -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Cloud & Infrastructure -->
+            <div
+              class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-xl border border-gray-700/50 hover:border-indigo-500/50 transition-all duration-300"
+            >
+              <h3
+                class="text-xl font-bold text-indigo-400 mb-4 flex items-center"
+              >
+                <svg
+                  class="w-6 h-6 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M5.5 16a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 16h-8z"
+                  />
+                </svg>
+                Cloud & Infrastructure
+              </h3>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300">Kubernetes & Docker</span>
+                  <div class="w-24 bg-gray-700 rounded-full h-2">
+                    <div
+                      class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full"
+                      style="width: 95%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300">AWS (EC2, S3, RDS)</span>
+                  <div class="w-24 bg-gray-700 rounded-full h-2">
+                    <div
+                      class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full"
+                      style="width: 85%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300">Service Mesh (Istio)</span>
+                  <div class="w-24 bg-gray-700 rounded-full h-2">
+                    <div
+                      class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full"
+                      style="width: 80%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Programming -->
+            <div
+              class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300"
+            >
+              <h3
+                class="text-xl font-bold text-purple-400 mb-4 flex items-center"
+              >
+                <svg
+                  class="w-6 h-6 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Programming
+              </h3>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300">Golang</span>
+                  <div class="w-24 bg-gray-700 rounded-full h-2">
+                    <div
+                      class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full"
+                      style="width: 90%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300">Shell Scripting</span>
+                  <div class="w-24 bg-gray-700 rounded-full h-2">
+                    <div
+                      class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full"
+                      style="width: 85%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300">Python</span>
+                  <div class="w-24 bg-gray-700 rounded-full h-2">
+                    <div
+                      class="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full"
+                      style="width: 75%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DevOps Tools -->
+            <div
+              class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-xl border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300"
+            >
+              <h3
+                class="text-xl font-bold text-pink-400 mb-4 flex items-center"
+              >
+                <svg
+                  class="w-6 h-6 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"
+                  />
+                </svg>
+                DevOps & Tools
+              </h3>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300">CI/CD (Jenkins, ArgoCD)</span>
+                  <div class="w-24 bg-gray-700 rounded-full h-2">
+                    <div
+                      class="bg-gradient-to-r from-pink-500 to-indigo-500 h-2 rounded-full"
+                      style="width: 95%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300">Monitoring (Prometheus)</span>
+                  <div class="w-24 bg-gray-700 rounded-full h-2">
+                    <div
+                      class="bg-gradient-to-r from-pink-500 to-indigo-500 h-2 rounded-full"
+                      style="width: 90%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-300">GitOps & IaC</span>
+                  <div class="w-24 bg-gray-700 rounded-full h-2">
+                    <div
+                      class="bg-gradient-to-r from-pink-500 to-indigo-500 h-2 rounded-full"
+                      style="width: 85%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill Tags -->
+          <div class="max-w-5xl mx-auto">
+            <h3 class="text-2xl font-semibold text-gray-300 mb-6 text-center">
+              Technology Stack
+            </h3>
+            <div class="flex flex-wrap justify-center gap-3">
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-indigo-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Kubernetes</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-purple-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Docker</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-pink-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Golang</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-indigo-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >AWS</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-purple-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Kafka</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-pink-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Redis</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-indigo-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Jenkins</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-purple-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >ArgoCD</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-pink-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Prometheus</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-indigo-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Grafana</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-purple-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Istio</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-pink-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Vault</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-indigo-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >OpenShift</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-purple-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >MinIO</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-pink-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >PostgreSQL</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-indigo-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >ELK Stack</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-purple-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >HAProxy</span
+              >
+              <span
+                class="skill-tag bg-gradient-to-r from-gray-800 to-gray-900 text-pink-400 py-2 px-5 rounded-full font-semibold border border-gray-700"
+                >Linux</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-20 border-t border-gray-800/50">
+        <h2
+          class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-12"
+        >
+          Notable Projects
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Go Image Cleanup -->
+          <div
+            class="project-card bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-xl shadow-xl border border-gray-700/50 hover:border-indigo-500/50"
+          >
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-xl font-bold text-white">Go Image Cleanup</h3>
+              <a
+                href="https://github.com/tedminht90/go-image-cleanup"
+                target="_blank"
+                class="text-indigo-400 hover:text-indigo-300"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </a>
+            </div>
+            <p class="text-gray-400 mb-4">
+              Automated container image cleanup utility for Kubernetes clusters.
+              Reduced disk usage by 35% across all environments.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs px-3 py-1 bg-indigo-900/30 text-indigo-300 rounded-full"
+                >Golang</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full"
+                >Kubernetes</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-pink-900/30 text-pink-300 rounded-full"
+                >CRI-O</span
+              >
+            </div>
+          </div>
+
+          <!-- Real-time Data Sync -->
+          <div
+            class="project-card bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-xl shadow-xl border border-gray-700/50 hover:border-purple-500/50"
+          >
+            <h3 class="text-xl font-bold text-white mb-4">
+              Real-time Data Synchronization
+            </h3>
+            <p class="text-gray-400 mb-4">
+              Change Data Capture architecture for real-time synchronization
+              between MySQL, PostgreSQL, and Oracle databases.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full"
+                >Kafka</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-pink-900/30 text-pink-300 rounded-full"
+                >Debezium</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-indigo-900/30 text-indigo-300 rounded-full"
+                >CDC</span
+              >
+            </div>
+          </div>
+
+          <!-- On-premise K8s -->
+          <div
+            class="project-card bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-xl shadow-xl border border-gray-700/50 hover:border-pink-500/50"
+          >
+            <h3 class="text-xl font-bold text-white mb-4">
+              On-premise Kubernetes Cluster
+            </h3>
+            <p class="text-gray-400 mb-4">
+              High-availability Kubernetes clusters deployed in UAT and
+              Production with Istio service mesh and advanced networking.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs px-3 py-1 bg-pink-900/30 text-pink-300 rounded-full"
+                >Kubernetes</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-indigo-900/30 text-indigo-300 rounded-full"
+                >Istio</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full"
+                >Cilium</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-pink-900/30 text-pink-300 rounded-full"
+                >CRI-O</span
+              >
+            </div>
+          </div>
+
+          <!-- Secure CI/CD -->
+          <div
+            class="project-card bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-xl shadow-xl border border-gray-700/50 hover:border-indigo-500/50"
+          >
+            <h3 class="text-xl font-bold text-white mb-4">
+              Secure CI/CD Pipeline
+            </h3>
+            <p class="text-gray-400 mb-4">
+              DevSecOps pipeline with automated security scanning, code quality
+              checks, and GitOps deployment strategies.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs px-3 py-1 bg-indigo-900/30 text-indigo-300 rounded-full"
+                >Jenkins</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full"
+                >ArgoCD</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-pink-900/30 text-pink-300 rounded-full"
+                >SonarQube</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full"
+                >NIST</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-indigo-900/30 text-indigo-300 rounded-full"
+                >Trivy</span
+              >
+            </div>
+          </div>
+
+          <!-- Enterprise Messaging -->
+          <div
+            class="project-card bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-xl shadow-xl border border-gray-700/50 hover:border-purple-500/50"
+          >
+            <h3 class="text-xl font-bold text-white mb-4">
+              Enterprise Messaging System
+            </h3>
+            <p class="text-gray-400 mb-4">
+              High-availability Kafka cluster with mTLS authentication,
+              comprehensive monitoring, and auto-scaling capabilities.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full"
+                >Kafka</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-pink-900/30 text-pink-300 rounded-full"
+                >mTLS</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-indigo-900/30 text-indigo-300 rounded-full"
+                >Prometheus</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-pink-900/30 text-pink-300 rounded-full"
+                >Grafana</span
+              >
+            </div>
+          </div>
+
+          <!-- Distributed Storage -->
+          <div
+            class="project-card bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-xl shadow-xl border border-gray-700/50 hover:border-pink-500/50"
+          >
+            <h3 class="text-xl font-bold text-white mb-4">
+              Distributed Storage System
+            </h3>
+            <p class="text-gray-400 mb-4">
+              MinIO cluster with S3 compatibility, CDN integration, and custom
+              file management APIs for multi-tenant usage.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-xs px-3 py-1 bg-pink-900/30 text-pink-300 rounded-full"
+                >MinIO</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-indigo-900/30 text-indigo-300 rounded-full"
+                >S3</span
+              >
+              <span
+                class="text-xs px-3 py-1 bg-purple-900/30 text-purple-300 rounded-full"
+                >HAProxy</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications & Education -->
+      <section id="certifications" class="py-20 border-t border-gray-800/50">
+        <h2
+          class="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-12"
+        >
+          Education & Certifications
+        </h2>
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+          <!-- Education -->
+          <div>
+            <h3 class="text-2xl font-semibold text-white mb-6">Education</h3>
+            <div class="space-y-4">
+              <div
+                class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-lg border border-gray-700/50"
+              >
+                <h4 class="text-lg font-semibold text-indigo-400">
+                  Master's Degree
+                </h4>
+                <p class="text-white">
+                  Computer Network and Data Communication
+                </p>
+                <p class="text-gray-400 text-sm">
+                  Hanoi University of Science and Technology
+                </p>
+                <p class="text-gray-500 text-sm">2018 - 2020</p>
+              </div>
+              <div
+                class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-lg border border-gray-700/50"
+              >
+                <h4 class="text-lg font-semibold text-purple-400">
+                  Engineer's Degree
+                </h4>
+                <p class="text-white">Computer Engineering</p>
+                <p class="text-gray-400 text-sm">
+                  Hanoi University of Science and Technology
+                </p>
+                <p class="text-gray-500 text-sm">2010 - 2015</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certifications -->
+          <div>
+            <h3 class="text-2xl font-semibold text-white mb-6">
+              Certifications
+            </h3>
+            <div class="space-y-4">
+              <div
+                class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-lg border border-gray-700/50 flex items-center justify-between"
+              >
+                <div>
+                  <h4 class="text-lg font-semibold text-pink-400">CEH</h4>
+                  <p class="text-gray-400 text-sm">Certified Ethical Hacker</p>
+                </div>
+                <span class="text-gray-500 text-sm">2015</span>
+              </div>
+              <div
+                class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-lg border border-gray-700/50 flex items-center justify-between"
+              >
+                <div>
+                  <h4 class="text-lg font-semibold text-indigo-400">CCNP</h4>
+                  <p class="text-gray-400 text-sm">
+                    Cisco Certified Network Professional
+                  </p>
+                </div>
+                <span class="text-gray-500 text-sm">2013</span>
+              </div>
+              <div
+                class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-6 rounded-lg border border-gray-700/50 flex items-center justify-between"
+              >
+                <div>
+                  <h4 class="text-lg font-semibold text-purple-400">CCNA</h4>
+                  <p class="text-gray-400 text-sm">
+                    Cisco Certified Network Associate
+                  </p>
+                </div>
+                <span class="text-gray-500 text-sm">2012</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-20 border-t border-gray-800/50">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-4"
+          >
+            Let's Build Something Amazing
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            I'm always excited to discuss new projects, innovative ideas, or
+            opportunities to create exceptional infrastructure solutions.
+          </p>
+        </div>
+        <div
+          class="max-w-xl mx-auto bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8 rounded-xl shadow-2xl border border-gray-700/50"
+        >
+          <form id="contact-form">
+            <div class="mb-6">
+              <label for="name" class="block text-gray-300 mb-2 font-medium"
+                >Name</label
+              >
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full bg-gray-800/50 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-gray-700 focus:border-transparent transition"
+                required
+              />
+            </div>
+            <div class="mb-6">
+              <label for="email" class="block text-gray-300 mb-2 font-medium"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full bg-gray-800/50 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-gray-700 focus:border-transparent transition"
+                required
+              />
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-gray-300 mb-2 font-medium"
+                >Message</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                class="w-full bg-gray-800/50 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-gray-700 focus:border-transparent transition resize-none"
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 glow"
+            >
+              Send Message
+            </button>
+          </form>
+          <div id="form-status" class="mt-4 text-center"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gray-900/90 border-t border-gray-800/50 mt-20 backdrop-blur-sm"
+    >
+      <div class="container mx-auto px-6 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <h3
+              class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400"
+            >
+              Tạ Minh Trí
+            </h3>
+            <p class="text-gray-400 mt-2">
+              DevSecOps & Site Reliability Engineer
+            </p>
+          </div>
+          <div class="flex space-x-6">
+            <a
+              href="https://www.linkedin.com/in/ta-trí-02b647133"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-400 hover:text-indigo-400 transition-colors duration-300"
+            >
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/tedminht90"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-gray-400 hover:text-purple-400 transition-colors duration-300"
+            >
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                />
+              </svg>
+            </a>
+            <a
+              href="mailto:minhted@gmail.com"
+              class="text-gray-400 hover:text-pink-400 transition-colors duration-300"
+            >
+              <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                />
+                <path
+                  d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-800/50 text-center">
+          <p class="text-gray-400">
+            &copy; 2025 Tạ Minh Trí. All Rights Reserved.
+          </p>
+          <p class="text-gray-500 text-sm mt-2">
+            Built with <span class="text-red-500">♥</span> using modern web
+            technologies
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Particle effect
+      function createParticle() {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+        particle.style.left = Math.random() * window.innerWidth + "px";
+        particle.style.width = Math.random() * 5 + "px";
+        particle.style.height = particle.style.width;
+        particle.style.background = `rgba(${Math.random() * 100 + 155}, ${
+          Math.random() * 100 + 155
+        }, 255, ${Math.random() * 0.5 + 0.5})`;
+        particle.style.borderRadius = "50%";
+        particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+        document.getElementById("particles").appendChild(particle);
+
+        setTimeout(() => particle.remove(), 20000);
+      }
+
+      setInterval(createParticle, 300);
+
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Contact form submission
+      const contactForm = document.getElementById("contact-form");
+      const formStatus = document.getElementById("form-status");
+
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        formStatus.innerHTML = '<p class="text-yellow-400">Sending...</p>';
+
+        // Simulate form submission
+        setTimeout(() => {
+          console.log("Form Submitted:", { name, email, message });
+
+          formStatus.innerHTML =
+            '<p class="text-green-400">✓ Thank you! Your message has been sent successfully.</p>';
+          contactForm.reset();
+
+          setTimeout(() => {
+            formStatus.innerHTML = "";
+          }, 5000);
+        }, 1500);
+      });
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          mobileMenu.classList.add("hidden");
+
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = "0.1s";
+            entry.target.classList.add("timeline-item");
+          }
+        });
+      }, observerOptions);
+
+      // Observe timeline items
+      document.querySelectorAll(".mb-16").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Header background on scroll
+      const header = document.querySelector("header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("bg-gray-900/95");
+        } else {
+          header.classList.remove("bg-gray-900/95");
+        }
+      });
+
+      // Dynamic typing effect restart
+      const typingElement = document.querySelector(".typing");
+      setInterval(() => {
+        typingElement.style.animation = "none";
+        setTimeout(() => {
+          typingElement.style.animation =
+            "typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite";
+        }, 100);
+      }, 8000);
+    </script>
+  </body>
+</html>
