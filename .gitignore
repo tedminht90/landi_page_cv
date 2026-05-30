@@ -1,0 +1,21 @@
+# Ignore everything by default
+*
+
+# Re-include the only file we want tracked
+!index.html
+!.gitignore
+
+# Never track these even if explicitly added later
+.DS_Store
+.codegraph/
+.claude/
+.env
+.env.*
+node_modules/
+*.log
+
+# CV / source documents (kept locally, never committed)
+*.docx
+*.pdf
+*.bak
+*.bak.*
